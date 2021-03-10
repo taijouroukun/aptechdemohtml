@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        #main .hanganh { height:130px; overflow: hidden; margin: 20px; }
+        img#anhto { max-width: 100%; max-height: 100%; }
+    </style>
+</head>
+<body>
+    <div id="main" class="container">
+        <div class="row hanganh">
+            <div class="col"><img src="imgt6/hamburg_001.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_002.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_003.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_004.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_005.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+        </div>
+        
+        <div class="row hanganh">
+            <div class="col"><img src="imgt6/hamburg_006.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_007.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_008.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_009.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+            <div class="col"><img src="imgt6/hamburg_010.jpg" class="img-fluid rounded" onclick="PopupAnh(this);"/></div>
+        </div>
+    </div>
+    
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <img src="" id="anhto" />
+        <div id="danhsachanh"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function PopupAnh(img) {
+        //document.getElementById('anhto').src = img.src;
+        $('#anhto').attr('src',img.src); // Tuong duong voi lenh o dong tren!
+        $('.modal').modal('show'); // jQuery ~ thu vien cua javascript -> $('selector') ~ document.getElementBy... #id -> ById(id), .class -> ByClass(class) ...  => selector ~ css
+        console.log(img.src);
+        document.getElementById('danhsachanh').innerHTML = document.getElementById('main').innerHTML;
+    }
+  </script>
+</body>
+</html>

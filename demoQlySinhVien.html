@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        body {margin:0; padding:0; background-color:#333;}
+        #main { width:1000px; background-color:#fff; margin:0 auto; }
+        .fromcontent .row { margin:5px 0 5px 0; }
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1 class="text-center">Student Management APP</h1>
+        <form>
+            <div class="fromcontent">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                        <label>Ho ten: </label>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <input type="text" id="txtHoTen" name="txtHoTen" class="form-control" placeholder="Nhap ho ten sinh vien" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                        <label>Ngay sinh: </label>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <input type="date" id="txtNgaySinh" name="txtNgaySinh" class="form-control" placeholder="Nhap ngay sinh cua sinh vien" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                        <label>So dien thoai: </label>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <input type="text" id="txtSoDienThoai" name="txtSoDienThoai" class="form-control" placeholder="Nhap so dien thoai" required pattern="[\(\)0-9+\-,.\s]+" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                        <label>Dia Chi: </label>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <textarea id="txtDiaChi" name="txtDiaChi" col="20" rows="5" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                        <label>Email: </label>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="Nhap email cua sinh vien" required  />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                        <label>Lop: </label>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12 row no-gutters">
+                        <div class="col-md-6 col-sm-12 no-gutters">
+                            <select id="slLop" name="slLop" class="form-control" required>
+                                <option>Chon lop</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-12 no-gutters">
+                            <input type="text" id="txtLopMoi" name="txtLopMoi" placeholder="Nhap them lop moi" class="form-control" style="display:inline-block; width:auto;" /><button>+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                        <label>&nbsp;</label>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <input type="submit" value="Them Moi" class="btn btn-primary" />
+                        <input type="reset" value="Nhap Lai" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="DSSinhVien">
+            <div class="row">
+                <div class="col">STT</div>
+                <div class="col-2">Ho Ten</div>
+                <div class="col">Ngay Sinh</div>
+                <div class="col">So Dien Thoai</div>
+                <div class="col-2">Dia Chi</div>
+                <div class="col-2">Email</div>
+                <div class="col-1">Lop</div>
+                <div class="col-1">Chuc Nang</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var danhsachlop = ['KD2101L','C2002G'];
+        var danhsachsinhvien = [];
+        var sinhvienduocchon = {};
+        function RefreshDanhSachLop() {
+            html = "<option>Chon lop</option>";
+            for(var i=0;i<danhsachlop.length;i++) {
+                html += "<option value='"+danhsachlop[i]+"'>"+danhsachlop[i]+"</option>";
+            }
+            $('#slLop').html(html);
+        }
+        $('button').click(function(e){
+            e.preventDefault();
+            var tenlop = $('#txtLopMoi').val();
+            danhsachlop.push(tenlop);
+            RefreshDanhSachLop();
+            $('#txtLopMoi').val('');
+            LuuDuLieu();
+        });
+
+        function LuuDuLieu() {
+            if(localStorage) {
+                localStorage.setItem('dsLop',JSON.stringify(danhsachlop));
+                localStorage.setItem('dsSinhVien',JSON.stringify(danhsachsinhvien));
+            }
+        }
+
+        function LoadDuLieu() {
+            var dsLop = "";
+            if(localStorage)
+                try {
+                    dsLop = localStorage.getItem('dsLop');
+                    if(dsLop)
+                    {
+                        danhsachlop = JSON.parse(dsLop);
+                    }
+                    dsSinhVien = localStorage.getItem('dsSinhVien');
+                    if(dsSinhVien)
+                        danhsachsinhvien = JSON.parse(dsSinhVien);
+                } catch {
+                    console.log("Co loi hoac chua co du lieu!");
+                }
+
+        }
+
+        //$('input[type=submit]').click(function(e){
+        $('form').submit(function(e){
+            e.preventDefault();
+            if($('input[type=submit]').val()=='Sua')
+            {
+                //Thuc hien chuc nang sua
+                sinhvienduocchon.HoTen = $('#txtHoTen').val();
+                sinhvienduocchon.NgaySinh = $('#txtNgaySinh').val();
+                sinhvienduocchon.SoDienThoai = $('#txtSoDienThoai').val();
+                sinhvienduocchon.DiaChi = $('#txtDiaChi').val();
+                sinhvienduocchon.Email = $('#txtEmail').val();
+                sinhvienduocchon.Lop = $('#slLop').val();
+                LuuDuLieu();
+                RefreshDanhSachSinhVien();
+                $('input[type=reset]').click();
+                $('input[type=submit]').val('Them Moi');
+            }
+            else 
+            {
+                var sinhvien = {};
+                sinhvien.HoTen = $('#txtHoTen').val();
+                sinhvien.NgaySinh = $('#txtNgaySinh').val();
+                sinhvien.SoDienThoai = $('#txtSoDienThoai').val();
+                sinhvien.DiaChi = $('#txtDiaChi').val();
+                sinhvien.Email = $('#txtEmail').val();
+                sinhvien.Lop = $('#slLop').val();
+                danhsachsinhvien.push(sinhvien);
+                LuuDuLieu();
+                RefreshDanhSachSinhVien();
+                $('input[type=reset]').click();
+            }
+        });
+
+        function RefreshDanhSachSinhVien() {
+            $('.sinhvien').remove();
+            for(var i=0;i<danhsachsinhvien.length;i++) {
+                var html = "<div class=\"row sinhvien\"><div class=\"col\">"+(i+1)+"</div><div class=\"col-2\">"+danhsachsinhvien[i].HoTen+"</div><div class=\"col\">"+danhsachsinhvien[i].NgaySinh+"</div><div class=\"col\">"+danhsachsinhvien[i].SoDienThoai+"</div><div class=\"col-2\">"+danhsachsinhvien[i].DiaChi+"</div><div class=\"col-2\">"+danhsachsinhvien[i].Email+"</div><div class=\"col-1\">"+danhsachsinhvien[i].Lop+"</div><div class=\"col-1\"><button class=\"deletebutton\" stt=\""+i+"\">Xoa</button><button class=\"editbutton\" stt=\""+i+"\">Sua</button></div></div>";
+                $('#DSSinhVien').append(html);
+            }
+            $('button.deletebutton').click(function(){
+                var phantu = danhsachsinhvien.splice($(this).attr('stt'),1);
+                LuuDuLieu();
+                RefreshDanhSachSinhVien();
+            });
+            $('button.editbutton').click(function(){
+                sinhvienduocchon = danhsachsinhvien[$(this).attr('stt')];
+                $('input[type=submit]').val('Sua');
+                $('#txtHoTen').val(sinhvienduocchon.HoTen);
+                $('#txtNgaySinh').val(sinhvienduocchon.NgaySinh);
+                $('#txtSoDienThoai').val(sinhvienduocchon.SoDienThoai);
+                $('#txtDiaChi').val(sinhvienduocchon.DiaChi);
+                $('#txtEmail').val(sinhvienduocchon.Email);
+                $('#slLop').val(sinhvienduocchon.Lop);
+                //console.log(sinhvienduocchon);
+                $('button.deletebutton').attr('disabled','disabled');
+            });
+        }
+
+        LoadDuLieu();
+        RefreshDanhSachLop();
+        RefreshDanhSachSinhVien();
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+        body { background-color:#666;}
+        #main { background-color:#fff; width:500px; margin:0 auto; }
+        .header { font-weight: bold; color:#fff; background-color:#333; }
+        #main #noidung .row { height:100px; overflow: hidden; padding:10px 0 10px 0; border-bottom: solid 1px #999;}
+        #main #noidung .row img { width:100px;}
+        .modal-dialog { max-width: 80%; }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="container-fluid">
+            <div><input type="text" id="txtTenPhim" /><button>Search</button></div>
+            <div id="noidung">
+                <div class="row header">
+                    <div class="col">Ma IMDB</div>
+                    <div class="col">Ten Phim</div>
+                    <div class="col">Nam Phat Hanh</div>
+                    <div class="col">Poster</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script type="text/javascript">
+        $('#main button').click(function(){
+            var keyword = $('#txtTenPhim').val();
+            if(!keyword) {
+                return;
+            }
+
+            $.getJSON('http://www.omdbapi.com/?s='+keyword+'&apikey=73d91c83',function(data){
+                console.log(data);
+                var danhsachphim = data.Search;
+                for(var i =0; i<danhsachphim.length;i++) {
+                    var tieude = danhsachphim[i].Title;
+                    var namphathanh = danhsachphim[i].Year;
+                    var anhposter = danhsachphim[i].Poster;
+                    var maimdb = danhsachphim[i].imdbID;
+
+                    var html = "<div class='row'><div class='col'><button>"+maimdb+"</button></div><div class='col'>"+tieude+"</div><div class='col'>"+namphathanh+"</div><div class='col'><img src='"+anhposter+"' /></div></div>";
+                    $('#noidung').append(html);
+
+                }
+
+                $('#noidung button').click(function() {
+                    console.log($(this).text());
+                    var maimdb = $(this).text();
+                    $.getJSON('http://www.omdbapi.com/?i='+maimdb+'&apikey=73d91c83&plot=full',function(data1){
+                        console.log(data1);
+                        $('.modal .modal-title').text(data1.Title);
+                        var html ="";
+                        html = html + "<img src='"+data1.Poster+"' align='left'/>";
+                        html += "<div>";
+                        html += "<b>Released: </b> "+data1.Released+"<br />";
+                        html += "<b>Writer: </b> "+data1.Writer+"<br />";
+                        html += "<b>Director: </b> "+data1.Director+"<br />";
+                        html += "<b>Actors: </b> "+data1.Actors+"<br />";
+                        html += "<b>Runtime: </b> "+data1.Runtime+"<br />";
+                        html += "<b>Plot: </b> "+data1.Plot+"<br />";
+                        html += "</div>";
+                        $('.modal .modal-body').html(html);
+                        $('.modal').fadeIn('slow');
+                    });
+                });
+            });
+        });
+        $('.modal button').click(function(){
+            $('.modal').fadeOut('slow');
+        });
+    </script>
+</body>
+</html>
